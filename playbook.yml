@@ -1,0 +1,21 @@
+---
+- name: Retrieve secret from Akeyless
+  hosts: localhost
+  gather_facts: no
+
+  tasks:
+    - name: Get password from Vault
+      # Use the vault_kv2_get lookup for KV version 2 secrets engine
+      # The 'by_path' argument is specific to KV2.
+      # The 'vault_addr' and 'vault_token' are automatically provided by the AWX credential.
+      ansible.builtin.set_fact:
+        firstSecret: "{{ lookup('community.hashi_vault.vault_kv2_get', 'secret/data/1-static-secret/MyFirstSecret') }}"
+      no_log: true # Important: Prevent sensitive data from appearing in logs
+
+    - name: Use the retrieved password (example: debug)
+      debug:
+        msg: "The password is: {{ firstSecret }}"
+      # In a real scenario, you would pass this to a module that needs it, e.g.:
+      # community.postgresql.postgresql_user:
+      #   name: myuser
+      #   password: "{{ db_password }}"
