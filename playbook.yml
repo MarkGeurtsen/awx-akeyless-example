@@ -10,7 +10,7 @@
       # The 'vault_addr' and 'vault_token' are automatically provided by the AWX credential.
       ansible.builtin.set_fact:
         firstSecret: "{{ lookup('community.hashi_vault.vault_kv2_get', 'secret/data/1-static-secret/MyFirstSecret') }}"
-      no_log: true # Important: Prevent sensitive data from appearing in logs
+      no_log: false # Important: Prevent sensitive data from appearing in logs
 
     - name: Use the retrieved password (example: debug)
       debug:
