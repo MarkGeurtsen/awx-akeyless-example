@@ -5,7 +5,6 @@
   connection: local
 
   tasks:
-    tasks:
     - name: Dump all variables (for debugging)
       debug:
-      var: hostvars[inventory_hostname]
+        var: hostvars[inventory_hostname]
