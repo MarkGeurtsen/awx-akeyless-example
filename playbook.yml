@@ -4,15 +4,8 @@
   gather_facts: no
   connection: local
 
-
-  environment:
-    VAULT_ADDR: "https://hvp.akeyless.io"
-    VAULT_TOKEN: "p-54nl92rxnmlram..XbSxKqGOttUpKiRA1vELYRXkk4M/LhLnOF+icduK2WY="
-    VAULT_SKIP_VERIFY: "true"
-
-
   tasks:
     tasks:
-    - name: Get entire secret from Akeyless
-      set_fact:
-        full_secret: "{{ lookup('community.hashi_vault.vault_kv2_get', 'secret/data/1-static-secret/MyFirstSecret') }}"
+    - name: Dump all variables (for debugging)
+      debug:
+      var: hostvars[inventory_hostname]
