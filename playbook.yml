@@ -1,15 +1,18 @@
 ---
-- name: Debug HashiCorp Vault lookup
+- name: Akeyless AWX Example
   hosts: localhost
   gather_facts: no
   connection: local
 
-  tasks:
-    - name: Get entire secret from Vault
-      ansible.builtin.set_fact:
-        full_secret: "{{ lookup('community.hashi_vault.vault_kv2_get', 'secret/data/1-static-secret/MyFirstSecret') }}"
-      # You will see a warning here, but that's expected.
 
-    - name: Print the keys of the secret to find the right field
-      debug:
-        msg: "The secret contains the following keys: {{ full_secret.keys() }}"
+  environment:
+    VAULT_ADDR: "https://hvp.akeyless.io"
+    VAULT_TOKEN: "p-54nl92rxnmlram..XbSxKqGOttUpKiRA1vELYRXkk4M/LhLnOF+icduK2WY="
+    VAULT_SKIP_VERIFY: "true"
+
+
+  tasks:
+    tasks:
+    - name: Get entire secret from Akeyless
+      set_fact:
+        full_secret: "{{ lookup('community.hashi_vault.vault_kv2_get', 'secret/data/1-static-secret/MyFirstSecret') }}"
