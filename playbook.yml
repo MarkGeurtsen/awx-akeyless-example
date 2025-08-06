@@ -5,6 +5,6 @@
   connection: local
 
   tasks:
-    - name: Dump all variables (for debugging)
+    - name: Show Akeyless-injected credentials
       debug:
-        var: hostvars[inventory_hostname]
+      msg: "Secret username is {{ username }} and password is {{ password }}"
