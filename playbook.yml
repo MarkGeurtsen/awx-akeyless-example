@@ -5,6 +5,6 @@
   connection: local
 
   tasks:
-    - name: Show Akeyless-injected credentials
-      debug:
-        msg: "Secret username is {{ USERNAME }} and password is {{ PASSWORD }}"
+    - name: Show Akeyless-injected credentials (env)
+      ansible.builtin.debug:
+        msg: "Secret username is {{ lookup('env','USERNAME') }} and password is {{ lookup('env','PASSWORD') }}"
