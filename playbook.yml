@@ -7,4 +7,4 @@
   tasks:
     - name: Show Akeyless-injected credentials
       debug:
-        msg: "Secret username is {{ APP_USERNAME }} and password is {{ APP_PASSWORD }}"
+        msg: "Secret username is {{ APP_KEY }} and password is {{ APP_VALUE }}"
